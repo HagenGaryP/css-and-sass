@@ -196,3 +196,42 @@ Note: The !important rule is ignored in a keyframe (See last @keyframes example)
 
 <br/>
 
+
+### Animation
+
+<br/>
+
+The [animation](https://developer.mozilla.org/en-US/docs/Web/CSS/animation) shorthand CSS property applies an animation between styles.
+
+It is a shorthand for **animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, and animation-play-state.**
+
+#### The animation-name CSS property
+specifies the names of one or more @keyframes at-rules describing the animation or animations to apply to the element.
+
+
+#### The animation-duration CSS property
+sets the length of time that an animation takes to complete one cycle.
+
+#### The animation-timing-function CSS property
+sets how an animation progresses through the duration of each cycle.
+
+#### The animation-delay CSS property
+specifies the amount of time to wait from applying the animation to an element before beginning to perform the animation.
+The animation can start later, immediately from its beginning, or immediately and partway through the animation.
+
+
+#### The animation-iteration-count CSS property
+sets the number of times an animation sequence should be played before stopping.
+
+If multiple values are specified, each time the animation is played the next value in the list is used, cycling back to the first value after the last one is used.
+
+#### The animation-direction CSS property
+sets whether an animation should play forward, backward, or alternate back and forth between playing the sequence forward and backward.
+
+#### The animation-fill-mode CSS property
+sets how a CSS animation applies styles to its target before and after its execution.
+
+#### The animation-play-state CSS property
+sets whether an animation is running or paused.
+
+
