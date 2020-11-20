@@ -55,11 +55,14 @@ body {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+
+  margin-bottom: 60px;
 
   backface-visibility: hidden;
   /*
@@ -124,4 +127,90 @@ body {
     opacity: 1;
     transform: translate(0);
   }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+/*
+pseudo selectors
+
+Making the visited state look the same as the default link state,
+instead of it turning purple after being visited.
+*/
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px; /* makes the button rounded */
+
+  transition: all .2s; /* all properties are enabled to be animated - shorthand version */
+
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+
+/*
+the :active" pseudo-class is for clicking.  So, when you click the styling will be applied.
+*/
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+/*
+::after pseudo-element
+be sure to put it behind the actual button element with absolute positioning, top: 0, and left: 0
+*/
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute; /* needs a reference, so we set the position: relative for the actual button element */
+  top: 0;
+  left: 0;
+  z-index: -1; /* z-index defines the position of elements if they overlapping. The lower value will be behind */
+  /* we want to animate the btn:hover::after, but we do it on the initial state */
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  /* transform: scale(1.5); /* "after", is while you're currently hover the element. scale it by factor of 1.5 */
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0; /* fades out of the scaled transform since we set opacity to 0, so it will be invisible */
+}
+
+/* animated button styling for only while it's animating */
+
+.btn-animated {
+  /* values -> name  duration timing-func  delay */
+  animation: moveInBottom .5s ease-out .75s;
+  animation-fill-mode: backwards; /* apply the styles up to 0% before animation starts */
 }

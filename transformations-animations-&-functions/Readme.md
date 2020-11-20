@@ -234,4 +234,51 @@ sets how a CSS animation applies styles to its target before and after its execu
 #### The animation-play-state CSS property
 sets whether an animation is running or paused.
 
+<br/><br/>
 
+## Building a Complex Animated Button
+
+#### TOPICS:
+
+- What pseudo-elements and pseudo-classes are.
+
+- How and why to use the **::***after* pseudo-element;
+
+- How to make a creative hover animation effect using the *transition* property.
+
+<br/>
+
+#### pseudo-element
+
+A CSS [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) is a keyword added to a selector that lets you style a specific part of the selected element(s).
+For example, **::first-line** can be used to change the font of the first line of a paragraph.
+
+```
+/* The first line of every <p> element. */
+p::first-line {
+  color: blue;
+  text-transform: uppercase;
+}
+```
+
+Note: In contrast to pseudo-elements, pseudo-classes can be used to style an element based on its state.
+
+<br/>
+
+#### pseudo-class
+
+A CSS [pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/pseudo-classes) is a keyword added to a selector that specifies a special state of the selected element(s).
+
+For example, **:hover** can be used to change a button's color when the user's pointer hovers over it.
+
+```
+/* Any button over which the user's pointer is hovering */
+button:hover {
+  color: blue;
+}
+```
+
+Pseudo-classes let you apply a style to an element not only in relation to the content of the document tree,
+but also in relation to external factors like the history of the navigator (**:visited**, for example),
+the status of its content (like **:checked** on certain form elements),
+or the position of the mouse (like **:hover**, which lets you know if the mouse is over an element or not).
