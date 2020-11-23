@@ -1,4 +1,24 @@
-# Mixins
+# Mixins & Functions
+
+Mixins and Functions are written in a similar way, using the **@** symbol followed by either "mixin" or "function", then the name, and finally the declarations block.
+
+Functions use the **@return** keyword to return a value.
+```
+@function divide($a, $b) {
+  @return $a / $b;
+}
+```
+
+To use this "divide" function for something that requires units like pixels -> call function with args and multiply by 1px;
+```
+nav {
+  margin: divide(60, 2) * 1px;
+}
+```
+
+This isn't really practical, but it's just an example of how to use functions.
+
+</br>
 
 The **@mixin** directive lets you create CSS code that is to be reused throughout the website.
 
