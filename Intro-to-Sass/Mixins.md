@@ -201,3 +201,189 @@ To create a mixin you use the @mixin directive and give it a name. We've named o
 We're also using the variable $property inside the parentheses so we can pass in a transform of whatever we want.
 
 After you create your mixin, you can then use it as a CSS declaration starting with @include followed by the name of the mixin.
+
+
+# Udemy video examples
+
+HTML
+```
+<nav>
+  <ul class="navigation">
+    <li> <a href="#">About us</a> </li>
+    <li> <a href="#">Pricing</a> </li>
+    <li> <a href="#">Contact</a> </li>
+  </ul>
+  <div class="buttons">
+    <a class="btn-main" href="#">Sign up</a>
+    <a class="btn-hot" href="#">Get a quote</a>
+  </div>
+<nav>
+```
+
+</br>
+
+**SCSS syntax**
+```
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// declaring a variable with the $ operator to indicate a variable
+$color-primary: #f9ed69; // yellow
+$color-secondary: #f08a5d; // orange
+$color-tertiary: #b83b5e; // pink
+$color-text-dark: #333; // dark grey
+$color-text-light: #eee;
+
+$width-button: 150px;
+
+// creating a mixin with @mixin
+@mixin clearfix {
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+// using mixin with an arg passed in to keep DRY principle
+@mixin style-link-text($color) {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $color;
+}
+
+nav {
+  margin: 30px;
+  background-color: $color-primary;
+
+  // including the mixin "clearfix"
+  @include clearfix;
+}
+
+.navigation {
+  list-style: none;
+  float: left;
+
+  li {
+    display: inline-block;
+    margin-left: 30px;
+
+    &:first-child {
+      margin: 0;
+    }
+
+    a:link {
+      // include mixin "style-link-text" with the dark color;
+      @include style-link-text($color-text-dark);
+    }
+  }
+}
+
+.buttons {
+  float: right;
+}
+
+.btn-main:link,
+.btn-hot:link {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+  width: $width-button;
+  // include mixin "style-link-text" with light color passed in
+  @include style-link-text($color-text-light);
+}
+
+.btn-main {
+  &:link {
+    background-color: $color-secondary;
+  }
+
+  &:hover {
+    // using built-in functions to make button 15% darker upon hovering
+    background-color: darken($color-secondary, 15%);
+  }
+}
+
+.btn-hot {
+  &:link {
+    background-color: $color-tertiary;
+  }
+
+  &:hover {
+    // using built-in functions to make button 10% lighter upon hovering
+    background-color: lighten($color-tertiary, 10%);
+  }
+}
+```
+
+</br>
+
+**CSS syntax**
+
+```
+* {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  margin: 30px;
+  background-color: #f9ed69;
+}
+nav::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.navigation {
+  list-style: none;
+  float: left;
+}
+.navigation li {
+  display: inline-block;
+  margin-left: 30px;
+}
+.navigation li:first-child {
+  margin: 0;
+}
+.navigation li a:link {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.buttons {
+  float: right;
+}
+
+.btn-main:link,
+.btn-hot:link {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+  width: 150px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #eee;
+}
+
+.btn-main:link {
+  background-color: #f08a5d;
+}
+.btn-main:hover {
+  background-color: #ea5717;
+}
+
+.btn-hot:link {
+  background-color: #b83b5e;
+}
+.btn-hot:hover {
+  background-color: #cb5b7b;
+}
+
+```
