@@ -1,4 +1,8 @@
-# Section Overview
+# Animations for "Natours" project
+
+</br>
+
+## Section Overview
 
 - Building the Header
 
