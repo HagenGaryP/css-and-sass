@@ -2,7 +2,7 @@
 
 </br>
 
-## Section Overview
+## First Section Overview
 
 - Building the Header
 
@@ -286,3 +286,6 @@ Pseudo-classes let you apply a style to an element not only in relation to the c
 but also in relation to external factors like the history of the navigator (**:visited**, for example),
 the status of its content (like **:checked** on certain form elements),
 or the position of the mouse (like **:hover**, which lets you know if the mouse is over an element or not).
+
+
+**After introducing Sass into the project, the notes are spread out throughout the folders inside the sass folder.**

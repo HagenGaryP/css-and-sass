@@ -1,152 +1,341 @@
-// Variables
-$color-primary: #55c57a;
-$color-primary-light:  #7ed56f;
-$color-primary-dark: #28b485;
+// imports
 
-$color-dark-grey: #777;
-$color-white: #fff;
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
 
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
 
-html {
-  font-size: 62.5%;
-}
+@import "components/button";
 
-body {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  // font-size: 16px;
-  line-height: 1.7;
-  color: $color-dark-grey;
-  padding: 3rem;
+@import "layout/header";
 
-  box-sizing: border-box;
-}
+@import "pages/home";
 
-.header {
-  height: 95vh;
-  background-image: linear-gradient(
-    to right bottom,
-    rgba($color-primary-light, 0.8),
-    rgba($color-primary-dark, 0.8)),
-    url(../img/hero.jpg);
-  background-size: cover;
-  background-position: top;
-  position: relative;
+/*********** VARIABLES ************************
 
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-}
+Variables - belong in abstracts/variables.scss
 
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-}
+**********************************************/
+// $color-primary: #55c57a;
+// $color-primary-light:  #7ed56f;
+// $color-primary-dark: #28b485;
 
-.header__logo {
-  height: 3.5rem;
-}
+// $color-dark-grey: #777;
+// $color-white: #fff;
+// $color-black: #000;
 
-/* .logo:hover {
-  animation: moveInRight 1s ease-out;
-} */
 
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
+/********** BASE / basic definitions ***********
 
-.heading-primary {
-  color: $color-white;
-  text-transform: uppercase;
+The universal, html, and body selectors
+belong in the base/base.scss file,
+because they are the basic definitions about our project
 
-  margin-bottom: 6rem;
+But parts of the body that are related to typography
+will belong in the _typography.scss file
 
-  backface-visibility: hidden;
-  /*
-  backface-visibility - used to fix the "shaky" part of an animation.
-  Determines whether or not the 'back' side of a transformed element is visible when facing the viewer.
-  With an identity transform, the front side of an element faces the viewer.
-  Syntax: visible | hidden
-  */
-}
+************************************************/
+// *,
+// *::after,
+// *::before {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: inherit;
+// }
 
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
+// html {
+//   font-size: 62.5%;
+// }
 
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
+/***************** TYPOGRAPHY *********************
 
-  /*
-  animation-iteration-count: 3;
-  animation-delay: 3s;
-  */
-}
+parts of the body that are related to typography should
+go inside typography file, in base folder.
 
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-  animation: moveInRight 1s ease-out;
-}
+**************************************************/
 
-@keyframes moveInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-10rem);
-  }
+// body {
+//   font-family: "Lato", sans-serif;
+//   font-weight: 400;
+//   // font-size: 16px;
+//   line-height: 1.7;
+//   color: $color-dark-grey;
+//   padding: 3rem;
 
-  80% {
-    transform: translateX(1rem);
-  }
+//   box-sizing: border-box; // in _base.scss
+// }
 
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
 
-@keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(10rem);
-  }
+/****************** LAYOUT ********************
 
-  80% {
-    transform: translateX(-1rem);
-  }
+Not treating the header as a component.
 
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
+Instead, treat it as a layout element.
 
-@keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(3rem);
-  }
+Because we'll probably have the header on each page
+of the website. But you could make it a component.
 
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
+create a file for it, and import it in main.scss
+
+***************************************************/
+
+
+// .header {
+//   height: 95vh;
+//   background-image: linear-gradient(
+//     to right bottom,
+//     rgba($color-primary-light, 0.8),
+//     rgba($color-primary-dark, 0.8)),
+//     url(../img/hero.jpg);
+//   background-size: cover;
+//   background-position: top;
+//   position: relative;
+
+//   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+//   // nesting
+//   &__logo-box {
+//     position: absolute;
+//     top: 4rem;
+//     left: 4rem;
+//   }
+
+//   &__logo {
+//     height: 3.5rem;
+//   }
+
+//   &__text-box {
+//     position: absolute;
+//     top: 40%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     text-align: center;
+//   }
+// }
+
+// .header__logo-box {
+//   position: absolute;
+//   top: 4rem;
+//   left: 4rem;
+// }
+
+// .header__logo {
+//   height: 3.5rem;
+// }
+
+// .header__text-box {
+//   position: absolute;
+//   top: 40%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   text-align: center;
+// }
+
+
+/****************** TYPOGRAPHY ********************
+
+Treating .heading-primary as an element for typography, but you could make it a component.
+
+create a file for it, and import it in main.scss
+
+***************************************************/
+
+// .heading-primary {
+//   color: $color-white;
+//   text-transform: uppercase;
+
+//   margin-bottom: 6rem;
+//   backface-visibility: hidden;
+
+//   // nesting other .heading-primary selectors
+//   &--main {
+//     display: block;
+//     font-size: 6rem;
+//     font-weight: 400;
+//     letter-spacing: 3.5rem;
+
+//     animation-name: moveInLeft;
+//     animation-duration: 1s;
+//     animation-timing-function: ease-out;
+//   }
+
+//   &--sub {
+//     display: block;
+//     font-size: 2rem;
+//     font-weight: 700;
+//     letter-spacing: 1.75rem;
+//     animation: moveInRight 1s ease-out;
+//   }
+// }
+
+// .heading-primary--main {
+//   display: block;
+//   font-size: 6rem;
+//   font-weight: 400;
+//   letter-spacing: 3.5rem;
+
+//   animation-name: moveInLeft;
+//   animation-duration: 1s;
+//   animation-timing-function: ease-out;
+
+//   /*
+//   animation-iteration-count: 3;
+//   animation-delay: 3s;
+//   */
+// }
+
+// .heading-primary--sub {
+//   display: block;
+//   font-size: 2rem;
+//   font-weight: 700;
+//   letter-spacing: 1.75rem;
+//   animation: moveInRight 1s ease-out;
+// }
+
+
+/****************** ANIMATIONS ********************
+
+The animations - essentially all the @keyframes code
+belong in the base/animations.scss file
+
+***************************************************/
+
+// @keyframes moveInLeft {
+//   0% {
+//     opacity: 0;
+//     transform: translateX(-10rem);
+//   }
+
+//   80% {
+//     transform: translateX(1rem);
+//   }
+
+//   100% {
+//     opacity: 1;
+//     transform: translate(0);
+//   }
+// }
+
+// @keyframes moveInRight {
+//   0% {
+//     opacity: 0;
+//     transform: translateX(10rem);
+//   }
+
+//   80% {
+//     transform: translateX(-1rem);
+//   }
+
+//   100% {
+//     opacity: 1;
+//     transform: translate(0);
+//   }
+// }
+
+// @keyframes moveInBottom {
+//   0% {
+//     opacity: 0;
+//     transform: translateY(3rem);
+//   }
+
+//   100% {
+//     opacity: 1;
+//     transform: translate(0);
+//   }
+// }
+
+
+/****************** COMPONENTS ********************
+
+belong in the components folder, in the file for
+that specific component.
+
+DON'T FORGET YOU HAVE TO IMPORT IT!!! (in main.scss)
+
+
+the button is a component, because it's a block.
+
+So, we can call it a component.
+
+It's reusable across the page, it's independent,
+it works everywhere and it's a building block
+that we can use wherever we want on our page.
+
+***************************************************/
+
+// .btn {
+//   &:link,
+//   &:visited {
+//     text-transform: uppercase;
+//     text-decoration: none;
+//     padding: 1.5rem 4rem;
+//     display: inline-block;
+//     border-radius: 10rem;
+//     transition: all .2s;
+//     position: relative;
+//     font-size: 1.6rem;
+//   }
+
+//   &:hover {
+//     transform: translateY(-3px);
+//     box-shadow: 0 1rem 2rem rgba($color-black,.2);
+
+//     &::after {
+//       transform: scaleX(1.4) scaleY(1.6);
+//       opacity: 0;
+//     }
+//   }
+
+//   &:active {
+//     transform: translateY(-1px);
+//     box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+//   }
+
+//   &--white {
+//     background-color: $color-white;
+//     color: $color-dark-grey;
+
+//     &::after {
+//       background-color: $color-white;
+//     }
+//   }
+
+//   &::after {
+//     content: "";
+//     display: inline-block;
+//     height: 100%;
+//     width: 100%;
+//     border-radius: 10rem;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     z-index: -1;
+//     transition: all .4s;
+//   }
+
+//   // &--white::after {
+//   //   background-color: $color-white;
+//   // }
+
+//   // &:hover::after {
+//   //   transform: scaleX(1.4) scaleY(1.6);
+//   //   opacity: 0;
+//   // }
+
+//   &--animated {
+//     animation: moveInBottom .5s ease-out .75s;
+//     animation-fill-mode: backwards;
+//   }
+// }
+
+
+
+// BEFORE NESTING EVERYTHING IN .btn
+
 
 /*
 pseudo selectors
@@ -154,71 +343,71 @@ pseudo selectors
 Making the visited state look the same as the default link state,
 instead of it turning purple after being visited.
 */
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  border-radius: 10rem; /* makes the button rounded */
+// .btn:link,
+// .btn:visited {
+//   text-transform: uppercase;
+//   text-decoration: none;
+//   padding: 1.5rem 4rem;
+//   display: inline-block;
+//   border-radius: 10rem; /* makes the button rounded */
 
-  transition: all .2s; /* all properties are enabled to be animated - shorthand version */
+//   transition: all .2s; /* all properties are enabled to be animated - shorthand version */
 
-  position: relative;
-  font-size: 1.6rem;
-}
+//   position: relative;
+//   font-size: 1.6rem;
+// }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
-}
+// .btn:hover {
+//   transform: translateY(-3px);
+//   box-shadow: 0 1rem 2rem rgba($color-black,.2);
+// }
 
-/*
-the :active" pseudo-class is for clicking.  So, when you click the styling will be applied.
-*/
-.btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
-}
+// /*
+// the :active" pseudo-class is for clicking.  So, when you click the styling will be applied.
+// */
+// .btn:active {
+//   transform: translateY(-1px);
+//   box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+// }
 
-.btn--white {
-  background-color: $color-white;
-  color: $color-dark-grey;
-}
+// .btn--white {
+//   background-color: $color-white;
+//   color: $color-dark-grey;
+// }
 
-/*
-::after pseudo-element
-be sure to put it behind the actual button element with absolute positioning, top: 0, and left: 0
-*/
+// /*
+// ::after pseudo-element
+// be sure to put it behind the actual button element with absolute positioning, top: 0, and left: 0
+// */
 
-.btn::after {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute; /* needs a reference, so we set the position: relative for the actual button element */
-  top: 0;
-  left: 0;
-  z-index: -1; /* z-index defines the position of elements if they overlapping. The lower value will be behind */
-  /* we want to animate the btn:hover::after, but we do it on the initial state */
-  transition: all .4s;
-}
+// .btn::after {
+//   content: "";
+//   display: inline-block;
+//   height: 100%;
+//   width: 100%;
+//   border-radius: 10rem;
+//   position: absolute; /* needs a reference, so we set the position: relative for the actual button element */
+//   top: 0;
+//   left: 0;
+//   z-index: -1; /* z-index defines the position of elements if they overlapping. The lower value will be behind */
+//   /* we want to animate the btn:hover::after, but we do it on the initial state */
+//   transition: all .4s;
+// }
 
-.btn--white::after {
-  background-color: $color-white;
-}
+// .btn--white::after {
+//   background-color: $color-white;
+// }
 
-.btn:hover::after {
-  /* transform: scale(1.5); /* "after", is while you're currently hover the element. scale it by factor of 1.5 */
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0; /* fades out of the scaled transform since we set opacity to 0, so it will be invisible */
-}
+// .btn:hover::after {
+//   /* transform: scale(1.5); /* "after", is while you're currently hover the element. scale it by factor of 1.5 */
+//   transform: scaleX(1.4) scaleY(1.6);
+//   opacity: 0; /* fades out of the scaled transform since we set opacity to 0, so it will be invisible */
+// }
 
-/* animated button styling for only while it's animating */
+// /* animated button styling for only while it's animating */
 
-.btn--animated {
-  /* values -> name  duration timing-func  delay */
-  animation: moveInBottom .5s ease-out .75s;
-  animation-fill-mode: backwards; /* apply the styles up to 0% before animation starts */
-}
+// .btn--animated {
+//   /* values -> name  duration timing-func  delay */
+//   animation: moveInBottom .5s ease-out .75s;
+//   animation-fill-mode: backwards; /* apply the styles up to 0% before animation starts */
+// }
