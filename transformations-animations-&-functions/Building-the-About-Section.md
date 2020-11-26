@@ -125,3 +125,91 @@ Note: An inline element cannot contain a block-level element.
 
 The next step is making effect happen with the gradient behind the text.
 
+
+*background-clip* determines the background painting area, but we have to use **-webkit CSS extension**, and set the property to "text"
+```
+background-clip: text;
+-webkit-background-clip: text;
+color: transparent;
+```
+
+*background-clip* alone will show the gradient without text, since color is set to transparent.
+
+*-webkit-background-clip* will show the value (text) only, with the color gradient applied to the text.
+
+
+**Setting the color property to "transparent" is what gives the text the colors from the gradient.**
+
+Otherwise, the text just sits on top of the clipped background.
+So, this is why we want to make the text invisible by setting *color* to be transparent, letting us see through the text that has a background of the color gradient.
+
+</br>
+
+#### Effect on hover - transforms the H2 with skew()
+
+First add a transition property to the element, so we can control the speed of the skew.
+
+Then inside the **&:hover**, we add the *transform* property and use the **skew()** function
+
+```
+&:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+  }
+```
+
+</br>
+
+## Utility classes
+
+Utility classes are very simple classes in CSS, which only have one simple goal.
+
+In our case, the goal is to center the H2 element's text.
+
+So, we will wrap this HTML element in a div with the utility class as followed:
+```
+<div class="u-center-text">
+    <h2 class="heading-secondary">
+        Exciting tours for adventurous people
+    </h2>
+</div>
+```
+
+The class starts with the letter **u** to indicate it's a utility class, then you usually add on the goal of the utility to its class property.
+
+The class will be reusable, and this makes it very helpful.
+
+We will style it inside the _utilities.scss file, which is inside the base folder.
+
+
+```
+.u-center-text { text-align: center; }
+```
+
+Now the text is centered, because this is a inline block element now.
+
+**Remember we defined the H2 (heading-secondary) as an inline block.**
+**So, if we set the parent to *text-align: center;* then that inline block element inside it is treated as text and will therefore be centered in the parent**
+
+</br>
+
+
+### Using the grid
+
+We can copy the **row** div from the grid in the (commented) markup that we created.
+
+```
+<div class="row">
+    <div class="col-1-of-2">
+        Text content
+    </div>
+    <div class="col-1-of-2">
+        Image composition
+    </div>
+</div>
+```
+
+When adding a margin to the bottom of the H2 element, we can think ahead, since there will probably more than one but could have a different margin-bottom.
+
+So we can just add another utility class to the div that's wrapping the element and style it accordingly.
+

@@ -1,6 +1,6 @@
 .row {
   max-width: $grid-width;
-  background-color: #eee3ee;
+  // background-color: #eee3ee;
   margin: 0 auto;
   // margin-bottom: $gutter-vertical;
 
@@ -15,7 +15,7 @@
   // the carrot, ^, indicates the beginning of the path for that selector
   [class^="col-"] {
     // so, all classes starting with "col-".
-    background-color: orangered;
+    // background-color: orangered; // just to see elements
     float: left;
 
     &:not(:last-child) {
