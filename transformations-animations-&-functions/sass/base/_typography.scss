@@ -34,3 +34,13 @@ body {
     animation: moveInRight 1s ease-out;
   }
 }
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+  // gradient will occupy 100% of available width, since it's a block element.
+  // so, we can change the display prop to inline-block
+  display: inline-block;
+}
