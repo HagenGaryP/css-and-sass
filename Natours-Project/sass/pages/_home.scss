@@ -4,8 +4,21 @@
   margin-top: -20vh;
 }
 
-.heading-secondary {
-  font-size: 3.5rem;
-  text-transform: uppercase;
-  font-weight: 700;
+.section-features {
+  padding: 20rem 0;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba($color-primary-light, 0.8),
+    rgba($color-primary-dark, 0.8)),
+    url(../img/nat-4.jpg);
+  background-size: cover;
+
+  transform: skewY(-7deg);
+  margin-top: -10rem;
+
+  // direct child selector - for all direct children
+  & > * { // .section-features > *
+    transform: skewY(7deg); // to correct the negative skew
+  }
 }
+
