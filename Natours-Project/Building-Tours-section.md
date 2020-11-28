@@ -17,120 +17,256 @@
 
 </br>
 
-### Implementing the Card component
+### Rotating Card
 
-Inside this section, create another row div, and add the following html elements to that row.
-```
-<div class="col-1-of-3">
-    <div class="card">
-      card text
-    </div>
-</div>
-```
+To create the effect of rotating a card, use one of the **rotate** functions with the *transform* property.
 
-Then add the _card.scss file, and import it in main.scss.
+The rotate functions include:
 
-The rotation (while hovering) is done with the *transform* property being set to the *rotateY()* function.
-Because it's rotating about the y-axis.
+**rotate()** - Specifies a 2D rotation by the angle specified in the parameter about the origin of the element, as defined by the transform-origin property.
 
-Remember that whenever you're doing an animation by using the *transform* property on some sort of action like a hover or click/active,
-it is best to use the *transition* property on the main part of the element (or parent).
+**rotate3d()** - Specifies a clockwise 3D rotation by the angle specified in last parameter about the [x,y,z] direction vector described by the first 3 parameters.
 
-Example - for testing purposes
-```
-.card {
-  background-color: orangered;
-  height: 50rem;
-  transition: all .8s;
+**rotateX('angle')** - Specifies a clockwise rotation by the given angle about the X axis.
 
-  &:hover {
-    transform: rotateY(180deg);
-  }
-}
-```
+**rotateY('angle')** - Specifies a clockwise rotation by the given angle about the Y axis.
+
+**rotateZ('angle')** - Specifies a clockwise rotation by the given angle about the Z axis.
 
 </br>
+
 
 ### Perspective
 
-When the card rotates, we want it to look like the card is actually moving/rotating toward you.
+The *perspective* CSS property determines the distance between the z=0 plane and the user in order to give a 3D-positioned element some perspective.
 
-This is done with *perspective* in CSS, and is **defined on the parent element of the one where the transform is being used**.
-
-The value for *perspective* is usually a very large number of pixels/rem, just try out different values to see which looks best.
-
-So what this means for us is that we should define the *perspective* property on the card class/element,
-and then have a child element for the rotation.
-
-
-Create a class, __side, for the card's other side, and add this to the hover.
-
-In the HTML create the other card side and indicate which is the front and back side of the cards, by adding a modifier to the HTML element's classes.
-
-
-</br>
-
-The difference between the front and back side is the way they do their rotation.
-Since the back side has already been rotated to 180deg,
-it needs to be rotated back to 0.
-
-We change the hover to be done only on the front side of the card to stop it from continuously rotating.
-So, now when you stop hovering, it rotates back to 0, showing the front side.
-
-</br>
-
-There will be 3 different card backs, so we will add another modifier "card__side--back-1" to the element.
-
-_card.scss file - showing the first card only
+- Syntax
 ```
-.card {
-  perspective: 150rem;
-  // to make perspective work with mozilla firefox, unless it's been integrated into browser already.
-  // -moz-perspective: 150rem;
-  position: relative;
-  height: 50rem; // needs to be added for perspective
+/* Keyword value */
+perspective: none;
 
-  &__side {
-    color: #fff;
-    font-size: 2rem;
+/* <length> values */
+perspective: 20px;
+perspective: 3.5em;
 
-    height: 50rem;
-    transition: all 1s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    // hide the back part of an element
-    backface-visibility: hidden;
-    border-radius: 3px; // rounded corners
-    // box-shadow: 0 1.5rem 4rem rgba($color-black, .25);
-    // can replace part of box-shadow values with a variable, or replace the entire thing.
-    box-shadow: $shadow-default rgba($color-black, .25);
+/* Global values */
+perspective: inherit;
+perspective: initial;
+perspective: unset;
+```
 
-    &--front {
-      background-color: $color-white;
+</br>
 
+- Values
+
+**none** - Indicates that no perspective transform is to be applied.
+
+**<length>** - A <length> giving the distance from the user to the z=0 plane.
+It is used to apply a perspective transform to the element and its content.
+If the value is 0 or a negative number, no perspective transform is applied.
+
+</br>
+
+- Description
+
+Each 3D element with z>0 becomes larger; each 3D-element with z<0 becomes smaller.
+The strength of the effect is determined by the value of this property.
+
+The parts of the 3D elements that are behind the user —
+i.e. their z-axis coordinates are greater than the value of the *perspective* CSS property — are not drawn.
+
+The **vanishing** point is by default placed at the center of the element, but its position can be changed using the *perspective-origin* property.
+
+Using this property with a value different than **0** and **none** creates a new stacking context.
+Also, in that case, the object will act as a containing block for *position: fixed* elements that it contains.
+
+
+### The backface-visibility Property
+
+The *backface-visibility* property **defines whether or not the back face of an element should be visible when facing the user.**
+
+The back face of an element is a mirror image of the front face being displayed.
+
+**This property is useful when an element is rotated. It lets you choose if the user should see the back face or not.**
+
+
+- Syntax
+```
+/* Keyword values */
+backface-visibility: visible;
+backface-visibility: hidden;
+
+/* Global values */
+backface-visibility: inherit;
+backface-visibility: initial;
+backface-visibility: unset;
+```
+
+The backface-visibility property is specified as one of the keywords listed below.
+
+- Values
+
+**visible** - The back face is visible when turned towards the user.
+
+**hidden** - The back face is hidden, effectively making the element invisible when turned away from the user.
+
+</br>
+
+
+## Background-blend and box-decoration-break
+
+</br>
+
+### Styling the card
+
+There are 3 elements on the front side of the card.
+Card picture, heading, and details.
+
+HTML inside of the card <div>
+```
+  <div class="card__side card__side--front">
+    <div class="card__picture card__picture--1">
+      &nbsp;
+    </div>
+    <h4 class="card__heading">
+      <span class="card__heading-span card__heading-span--1">The Sea Explorer</span>
+    </h4>
+    <div class="card__details">
+      <ul>
+        <li>3 day tours</li>
+        <li>Up to 30 people</li>
+        <li>2 tour guides</li>
+        <li>Sleep in cozy hotels</li>
+        <li>Difficulty: easy</li>
+      </ul>
+    </div>
+  </div>
+```
+
+</br>
+
+#### Background-blend
+
+The *background-blend-mode* property defines the blending mode of each background layer (color and/or image).
+
+It sets how an element's background images should blend with each other and with the element's background color.
+
+Blending modes should be defined in the same order as the *background-image* property.
+If the blending modes' and background images' list lengths are not equal, it will be repeated and/or truncated until lengths match.
+
+</br>
+
+#### box-decoration-break
+
+The *box-decoration-break* CSS property specifies how an element's fragments should be rendered when broken across multiple lines, columns, or pages.
+
+The specified value will impact the appearance of the following properties:
+
+background, border, border-image, box-shadow, clip-path, margin, padding.
+
+</br>
+
+- Syntax
+```
+/* Keyword values */
+box-decoration-break: slice;
+box-decoration-break: clone;
+
+/* Global values */
+box-decoration-break: initial;
+box-decoration-break: inherit;
+box-decoration-break: unset;
+```
+
+The box-decoration-break property is specified as one of the keyword values listed below.
+
+- Values
+
+**slice** - The element is initially rendered as if its box were not fragmented, after which the rendering for this hypothetical box is sliced into pieces for each line/column/page.
+Note that the hypothetical box can be different for each fragment since it uses its own height if the break occurs in the inline direction, and its own width if the break occurs in the block direction.
+
+**clone** - Each box fragment is rendered independently with the specified border, padding, and margin wrapping each fragment.
+The **border-radius, border-image**, and **box-shadow** are applied to each fragment independently.
+The background is also drawn independently for each fragment,
+which means that a background image with *background-repeat: no-repeat* may nevertheless repeat multiple times.
+
+</br>
+
+_card.scss file - inside **.card** selector
+```
+&__picture {
+    background-size: cover;
+    height: 23rem;
+    // blend-mode shows the background image blended in
+    background-blend-mode: screen; // different filters
+
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+    // images from unsplash.com
+    &--1 {
+      // background-image won't show if we don't implement background-blend-mode property on parent
+      background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
     }
 
-    &--back {
-      background-color: green;
-      // rotateY(180deg) on back to stay on back side
-      transform: rotateY(180deg); // stops rotation
+    &--2 {
+      background-image: url(../img/nat-5.jpg);
+    }
 
-      &-1 {
-        background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+    &--3 {
+      background-image: url(../img/nat-5.jpg);
+    }
+  }
+
+  &__heading {
+    font-size: 2.8rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: right;
+    color: $color-white;
+    position: absolute;
+    top: 12rem;
+    right: 2rem;
+    width: 75%;
+  }
+
+  /*
+  Instead of nesting &-span inside of &__heading,
+  we write a new selector path, &__heading-span
+  because it's not really a child of the heading.
+  "__heading-span" is a new element, so it's not an element of heading,
+  and it's not a modifier of heading either.
+  */
+  &__heading-span {
+    padding: 1rem 1.5rem;
+    // treating the lines in the heading as if they're 2 different elements
+    // -webkit-box-decoration-break: clone;
+    box-decoration-break: clone; // applies same styling
+
+    &--1 {
+      background-image: linear-gradient(to right bottom,
+        rgba($color-secondary-light, .85),
+        rgba($color-secondary-dark, .85));
+    }
+  }
+
+  &__details {
+    padding: 3rem;
+
+    ul {
+      list-style: none;
+      width: 80%;
+      // centering a block element, inside of a block element
+      margin: 0 auto;
+
+      li {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $color-grey-light-2;
+        }
       }
     }
   }
-
-  &:hover &__side--front {
-    transform: rotateY(-180deg);
-  }
-
-  // hovering off of the back side of card brings it to 0, the original position.
-  &:hover &__side--back {
-    transform: rotateY(0);
-  }
-}
 ```
-
