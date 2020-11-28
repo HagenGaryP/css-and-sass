@@ -270,3 +270,53 @@ _card.scss file - inside **.card** selector
     }
   }
 ```
+
+</br>
+
+## Styling back of Card
+
+HTML for back side of card
+```
+  <div class="card__side card__side--back card__side--back-1">
+    <div class="card__cta">
+      <div class="card__price-box">
+        <p class="card__price-only">Only</p>
+        <p class="card__price-value">$297</p>
+      </div>
+      <a href="#" class="btn btn--white">Book now!</a>
+    </div>
+  </div>
+```
+
+</br>
+
+
+SCSS specific to the back of card
+```
+// nested inside of .card{}
+  &__cta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+  }
+
+  &__price-box {
+    text-align: center;
+    color: $color-white;
+    margin-bottom: 8rem;
+  }
+
+  &__price-only {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  &__price-value {
+    font-size: 6rem;
+    font-weight: 100;
+  }
+```
+
