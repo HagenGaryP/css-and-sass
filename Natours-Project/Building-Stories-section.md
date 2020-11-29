@@ -231,3 +231,4 @@ The text between the <video> and </video> tags will only be displayed in browser
 | preload |	auto, metadata, or none	| Specifies if and how the author thinks the video should be loaded when the page loads |
 | src	       | URL	      | Specifies the URL of the video file                                |
 | width	     | pixels	    | Sets the width of the video player                                 |
+
