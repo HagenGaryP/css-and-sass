@@ -1,4 +1,8 @@
 .btn {
+  &-bg {
+    background-color: $color-white;
+  }
+
   &:link,
   &:visited {
     text-transform: uppercase;

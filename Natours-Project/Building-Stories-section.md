@@ -232,3 +232,38 @@ The text between the <video> and </video> tags will only be displayed in browser
 | src	       | URL	      | Specifies the URL of the video file                                |
 | width	     | pixels	    | Sets the width of the video player                                 |
 
+
+</br>
+
+
+## The object-fit property
+
+The CSS object-fit property is used to specify how an <img> or <video> should be resized to fit its container.
+
+This property tells the content to fill the container in a variety of ways;
+such as "preserve that aspect ratio" or "stretch up and take up as much space as possible".
+
+
+#### The object-fit property can have the following values:
+
+* **fill** - This is default. The replaced content is sized to fill the element's content box.
+If necessary, the object will be stretched or squished to fit.
+
+* **contain** - The replaced content is scaled to maintain its aspect ratio while fitting within the element's content box.
+
+* **cover** - The replaced content is sized to maintain its aspect ratio while filling the element's entire content box. The object will be clipped to fit
+
+* **none** - The replaced content is not resized
+
+* **scale-down** - The content is sized as if none or contain were specified (would result in a smaller concrete object size)
+
+
+</br>
+
+This property is very similar to the *background-size* property.
+```
+object-fit: cover;
+```
+This will make that the element, the <video>, fill the entire parent while still maintaining its aspect ratio.
+And the part of the video that doesn't fit the parent element, will simply be clipped off.
+
