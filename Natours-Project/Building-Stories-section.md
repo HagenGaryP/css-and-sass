@@ -219,8 +219,8 @@ The <video> tag contains one or more <source> tags with different video sources.
 The text between the <video> and </video> tags will only be displayed in browsers that do not support the <video> element.
 
 #### Optional Attributes
-| ---------- | ---------- | ------------------------------------------------------------------ |
-| **Attribute  | 	Value     |     	Description**                                                  |
+
+| Attribute  | 	Value     |     	Description                                                  |
 | ---------- | ---------- | ------------------------------------------------------------------ |
 | autoplay	 | autoplay   |	Specifies that the video will start playing as soon as it is ready |
 | controls   | controls	  | Specifies that video controls should be displayed (such as a play/pause button etc).|
@@ -231,4 +231,3 @@ The text between the <video> and </video> tags will only be displayed in browser
 | preload |	auto, metadata, or none	| Specifies if and how the author thinks the video should be loaded when the page loads |
 | src	       | URL	      | Specifies the URL of the video file                                |
 | width	     | pixels	    | Sets the width of the video player                                 |
-| ---------- | ---------- | ------------------------------------------------------------------ |
