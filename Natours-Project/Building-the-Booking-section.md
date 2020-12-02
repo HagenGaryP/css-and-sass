@@ -12,7 +12,7 @@
 
 - How and when to use the **:focus**, **:invalid**, *placeholder-show*, and **:checked** pseudo-classes.
 
-A reference to all [CSS pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A reference to all [CSS pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
 
 
 - Techniques to build custom radio buttons.
