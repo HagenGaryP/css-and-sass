@@ -130,3 +130,73 @@ Then we want to set the __nav to
 With its z-index set to a value between the __background and the __button.
 
 
+### Making the nav button work
+
+We set the transitions on  nav class and the background class,
+then add the following selectors to the whole navigation class:
+```
+  // the checkbox "hack"
+  &__checkbox:checked ~ &__background {
+    transform: scale(80);
+  }
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    width: 100%;
+  }
+```
+
+</br>
+
+## Custom animation timing functions
+
+**Easing functions** specify the rate of change of a parameter over time.
+
+Objects in real life don’t just start and stop instantly, and almost never move at a constant speed. When we open a drawer, we first move it quickly, and slow it down as it comes out. Drop something on the floor, and it will first accelerate downwards, and then bounce back up after hitting the floor.
+
+[This page helps you choose the right easing function](https://easings.net/)
+
+</br>
+
+### Cubic-bezier function & Easing functions
+
+The **cubic-bezier()** function defines a Cubic Bezier curve.
+
+A Cubic Bezier curve is defined by four points P0, P1, P2, and P3. P0 and P3 are the start and the end of the curve and, in CSS these points are fixed as the coordinates are ratios.
+P0 is (0, 0) and represents the initial time and the initial state, P3 is (1, 1) and represents the final time and the final state.
+
+The cubic-bezier() function can be used with the animation-timing-function property and the transition-timing-function property.
+
+- **CSS Syntax:**
+```
+cubic-bezier(x1,y1,x2,y2)
+```
+Where the values, x1,y1,x2,y2 are:
+**Required. Numeric values. x1 and x2 must be a number from 0 to 1**
+
+</br>
+
+The <easing-function> CSS data type denotes a mathematical function that describes the the rate at which a numerical value changes.
+
+This transition between two values may be applied in different situations. It may be used to describe how fast values change during animations.
+This lets you vary the animation's speed over the course of its duration. It may also be used to interpolate between two colors in a color gradient.
+
+The easing functions in the cubic-bezier subset of easing functions are often called "smooth" easing functions, because they can be used to smooth down the start and end of the interpolation.
+They correlate an input ratio to an output ratio, both expressed as <number>s. For these values, 0.0 represents the initial state, and 1.0 represents the final state.
+
+
+
+Go to [This page for easing functions](https://easings.net/)
+
+Then click which one you want, and copy the values.
+
+</br>
+
+#### The transform-origin property
+
+The transform-origin property allows you to change the position of transformed elements.
+
+2D transformations can change the x- and y-axis of an element. 3D transformations can also change the z-axis of an element.
+
+To better understand the transform-origin property, view a demo.
+
+Note: This property must be used together with the transform property.
