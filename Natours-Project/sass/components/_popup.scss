@@ -1,0 +1,98 @@
+.popup {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba($color-black, .8);
+  z-index: 9999;
+  opacity: 0; // makes popup invisible, but still exists
+  visibility: hidden; // completely hide popup element
+  transition: all .3s;
+
+
+  &__content {
+    @include absCenter;
+
+    width: 75%;
+    // height: 50rem; // for testing
+    background-color: $color-white;
+    box-shadow: 0 2rem 4rem rgba($color-black, .2);
+    border-radius: 3px;
+    display: table;
+    overflow: hidden;
+
+    // original state of content, to give impression of zooming out at the user.
+    opacity: 0;
+    /*
+      cant have 2 transforms, so the one included from our @mixin "absCenter" is getting overridden.
+      So, we must use the same value, then add any extras
+    */
+    transform: translate(-50%, -50%) scale(.25);
+    transition: all .5s .2s; // delaying by .2 seconds
+  }
+
+  &__left {
+    width: 33.3333333%;
+    display: table-cell;
+  }
+
+  &__right {
+    width: 66.66666667%;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3rem 5rem;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+
+    // column layout - might need prefixes for some browsers
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 1px solid $color-grey-light-2;
+
+    // needs prefixes to work in certain browsers
+    -moz-hyphens: auto;
+    hyphens: auto;
+  }
+
+  // OPEN STATES OF POPUP
+  &:target {
+    opacity: 1;
+    visibility: visible; // now we show element
+  }
+
+  // style the content at the moment popup is opened
+  &:target &__content {
+    // need to change opacity to 1 and scale up to 1 too
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  // popup close button ( X )
+  &__close {
+    &:link,
+    &:visited {
+      color: $color-dark-grey;
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all .2s;
+      line-height: 1;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
